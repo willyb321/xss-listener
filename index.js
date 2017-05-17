@@ -18,7 +18,7 @@ bot.onText(/\/delete (.+)/, (msg, match) => {
   const resp = match[1]; // TODO @cagatay check the id is string, prevent nosql object injection.
   if (msg.text.endsWith('all')) {
     db.remove({}, { multi: true }, function (err, numRemoved) {
-      bot.sendMessage(chatId, numRemoved);
+      bot.sendMessage(chatId, `Removed ${numRemoved} entries from the db`);
     });
   } else {
     db.remove({ _id: resp }, {}, (err, numRemoved) => {
